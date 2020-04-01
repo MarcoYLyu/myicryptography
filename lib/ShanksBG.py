@@ -64,14 +64,13 @@ def shanks(g, h, N, p):
     print(a + n * b)
     return a, b
     
-
 def main():
     
     g = int(input())
     h = int(input())
     p = int(input())
     N = int(input())
-    print("%d + %dx" % (shanks(g, h, N, p)))
+    print("%d + %dn" % (shanks(g, h, N, p)))
     return 0
 
 if __name__ == "__main__":

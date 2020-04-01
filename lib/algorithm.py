@@ -1,14 +1,43 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Mar 31 18:08:32 2020
+"""Contains common number theory algorithms
 
-@author: marcolyu
+Library dependency:
+    math
 """
-
 import math
 
-def factor_two(p):
+def fast_modular_multiply(g, k, p):
+    """Calculates the value g^k mod p
+    
+    Args:
+        g: an integer representing the base
+        k: an integer representing the exponent
+        p: an integer (prime number)
+        
+    Returns:
+        an integer representing g^k mod p
+
+    """
+    u = g
+    y = 1
+    while k != 0:
+        if k % 2 == 1:
+            y = y * u % p
+        u = u * u % p
+        k //= 2
+    return y
+
+def decompose_two(p):
+    """Decomposes p into p - 1 = q * 2^s
+    
+    Args:
+        p: an integer representing a prime number
+        
+    Results:
+        p: an integer representing q above
+        k: an integer representing the exponent of 2
+
+    """
     k = 0
     while p % 2 == 0:
         k += 1
@@ -31,6 +60,7 @@ def gcd(a, b):
     
     Returns:
         an int representing the greatest common divisor
+
     """
     if (a < b):
         a, b = b, a
@@ -42,12 +72,30 @@ def gcd(a, b):
     return b
 
 def find_first_divisor(N):
+    """Finds the first divisor of N
+    
+    Args:
+        N: an integer to be factored
+
+    Returns:
+        an integer representing the first divisor of N
+
+    """
     for i in range(2, int(math.sqrt(N)) + 1):
         if N % i == 0:
             return i
     return N
 
 def euler_phi(N):
+    """Calculates the Euler Phi function
+    
+    Args:
+        N: an integer
+        
+    Results:
+        an integer representing phi(N)
+    
+    """
     result = N
     divisor = 1
     p = find_first_divisor(N)
@@ -62,7 +110,31 @@ def euler_phi(N):
     else:
         return result // divisor
     
-if __name__ == "__main__":
-    print(euler_phi(33))
+def inverseMod(x, p):
+    """Calculates the inverse of x mod p
     
+    Args:
+        x: an integer
+        p: an integer (prime number)
+        
+    Returns:
+        an integer representing the inverse of x mod p
+
+    """
+    return pow(x, p - 2, p)
+
+def search_non_residue(p):
+    """Find a non residue of p between 2 and p
     
+    Args:
+        p: a prime number
+        
+    Returns:
+        a integer that is not a quadratic residue of p
+        or -1 if no such number exists 
+
+    """
+    for z in range(2, p):
+        if pow(z, (p - 1) // 2, p) == p - 1:
+            return z
+    return -1
