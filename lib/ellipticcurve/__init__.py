@@ -1,1 +1,0 @@
-from elliptic_curve import *

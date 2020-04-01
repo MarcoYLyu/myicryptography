@@ -12,7 +12,9 @@ Example:
     1
 """
 import math
-import algorithm as algo
+from .. import algorithm as algo
+
+__all__ = ['miller_rabin', 'p1_factorize']
 
 def miller_rabin(n, x):
     """Checks whether x is a Miller Rabin witness of n

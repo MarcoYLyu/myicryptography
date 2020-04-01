@@ -6,6 +6,16 @@ Library dependency:
 """
 import math
 
+__all__ = ['fast_modular_multiply',
+           'decompose_two',
+           'gcd',
+           'find_first_divisor',
+           'euler_phi',
+           'inverse_mod',
+           'search_non_residue',
+           'tonelli_shanks'
+          ]
+
 def fast_modular_multiply(g, k, p):
     """Calculates the value g^k mod p
     

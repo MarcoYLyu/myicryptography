@@ -13,6 +13,8 @@ for the lattice and generates the lattice accordingly.
 import math
 import numpy as np
 
+__all__ = ['Lattice']
+
 class Lattice:
     """The Lattice class
     

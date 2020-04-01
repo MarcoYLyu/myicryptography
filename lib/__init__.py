@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 
-from . import cryptosystem, ellipticcurve, factorization, lattice
-from cryptosystem import *
-from ellitpiccurve import *
-from factorization import *
-from lattice import *
+from . import lattice
+from . import crypto
+from . import factor
+from . import ecurve
 
-__all__ = ['cryptosystem', 'ellitpiccurve', 'factorization', 'lattice']
-__all__.extend(cryptosystem)
-__all__.extend(ellipticcurve)
-__all__.extend(factorization)
-__all__.extend(lattice)
+from .crypto import *
+from .ecurve import *
+from .factor import *
+from .lattice import *
+
+from .algorithm import *
+__all__ = ['crypto', 'ecurve', 'factorization', 'lattice', 'algorithm']
+__all__.extend(crypto.__all__)
+__all__.extend(ecurve.__all__)
+__all__.extend(factor.__all__)
+__all__.extend(lattice.__all__)

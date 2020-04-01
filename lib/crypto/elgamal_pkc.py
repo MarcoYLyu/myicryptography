@@ -6,7 +6,7 @@ Example:
     
     >>> elgamal_pkc = ElgamalPKC(467, 2)
     >>> elgamal_pkc.set_secret_key(153)
-    >>> elgamalPKC.decrypt(elgamalPKC.encrypt(331)))
+    >>> elgamalPKC.decrypt(elgamalPKC.encrypt(331))
     331
 
 Library dependency:
@@ -14,9 +14,11 @@ Library dependency:
 """
 from random import seed
 from random import randint
-import algorithm as algo
+from .. import algorithm as algo
 
 seed(1)
+
+__all__ = ['ElgamalPKC']
 
 class ElgamalPKC:
     """Elgamal public key cryptography

@@ -10,7 +10,9 @@ Library dependency:
 
 """
 import sys
-import algorithm as algo
+from .. import algorithm as algo
+
+__all__ = ['EllipticCurve']
 
 class EllipticCurve:
     """Elliptic curve class
@@ -111,7 +113,3 @@ class EllipticCurve:
         while (start * x % self.p != 1):
             start += 1
         return start
-    
-if __name__ == "__main__":
-    ec = EllipticCurve(3, 1, 5)
-    print(ec.list_points())
