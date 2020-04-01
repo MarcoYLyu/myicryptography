@@ -110,7 +110,7 @@ def euler_phi(N):
     else:
         return result // divisor
     
-def inverseMod(x, p):
+def inverse_mod(x, p):
     """Calculates the inverse of x mod p
     
     Args:
