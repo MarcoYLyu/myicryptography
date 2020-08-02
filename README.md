@@ -6,4 +6,8 @@ This repository contains a library of common cryptography functions, including b
 
 Use `pip3` to install the package
 
-``> pip3 install crypto``
+``>>> pip3 install myicrypto``
+
+## Acknowledge
+
+Every algorithm in this project comes from MATH 116 at UCLA.
