@@ -1,5 +1,11 @@
-#!/usr/bin/env python3
-"""Implements the Elgamal Public Key Cryptography
+"""
+================================================
+== 	Filename: elgamal_pkc.py
+== 	Author: Yi Lyu
+==	Status: Complete
+================================================
+
+Implements the Elgamal Public Key Cryptography
 
 Depends on the hardness of Diffie Hellman Problem.
 Example:
@@ -12,6 +18,7 @@ Example:
 Library dependency:
     random
 """
+
 from random import seed
 from random import randint
 from .. import algorithm as algo

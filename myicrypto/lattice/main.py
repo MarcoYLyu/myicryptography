@@ -1,17 +1,25 @@
-#!/usr/bin/env python3
-"""This file contains a model of the Lattice
+"""
+================================================
+== 	Filename: main.py
+== 	Author: Yi Lyu
+==	Status: Complete
+================================================
+
+This file contains a model of the Lattice
 
 The Lattice class takes in an array of vectors as the basis
 for the lattice and generates the lattice accordingly.
 
     Typical usage example:
         
-    bar = [[6513996, 6393464], [66586820, 65354729]]
-    foo = Lattice(bar)
-    orthogonal_basis = foo.orthogonalize() ## [[-1324 -2376], [ 2280 -1001]]
+    >>> bar = [[6513996, 6393464], [66586820, 65354729]]
+    >>> foo = Lattice(bar)
+    >>> foo.orthogonalize()
+    >>> [[-1324 -2376], [ 2280 -1001]]
 """
 import math
 import numpy as np
+import functools
 
 __all__ = ['Lattice']
 
@@ -37,10 +45,7 @@ class Lattice:
         inverse = np.linalg.inv(self.basis)
         coeffs = np.dot(vec, inverse).astype(int)
         res = np.dot(coeffs, self.basis)
-        for i in range(len(res)):
-            if res[i] != vec[i]:
-                return False
-        return True
+        return (res == vec).all()
 
     def hadamard_ratio(self):
         """ Calculates the Hadamard Ratio of the lattice """
@@ -86,21 +91,12 @@ class Lattice:
 
     ## Helper Functions
     def _vec_length(self, vec):
-        res = 0
-        for itr in vec:
-            res += itr * itr
-        return math.sqrt(res)
-
-    def _inner_product(self, vec1, vec2):
-        res = 0
-        for i in range(len(vec1)):
-            res += vec1[i] * vec2[i]
-        return res
+        return math.sqrt(np.dot(vec, vec))
 
     def _projection_length(self, vec1, vec2):
-        return self._inner_product(vec1, vec2) / self._vec_length(vec2)**2
+        return np.dot(vec1, vec2) / np.dot(vec2, vec2)
 
     def _check_lovasz(self, vec1, vec2):
-        lhs = self._vec_length(vec1) ** 2
-        rhs = (3.0 / 4 - self._projection_length(vec1, vec2)) * (self._vec_length(vec2) ** 2)
+        lhs = np.dot(vec1, vec1)
+        rhs = (3.0 / 4 - self._projection_length(vec1, vec2)) * np.dot(vec2, vec2)
         return lhs >= rhs

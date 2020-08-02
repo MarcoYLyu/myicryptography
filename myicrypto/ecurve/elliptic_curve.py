@@ -1,13 +1,15 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""ellipticCurve
+"""
+================================================
+== 	Filename: elliptic_curve.py               ==
+== 	Author: Yi Lyu                            ==
+==	Status: Complete                          ==
+================================================
 
 Defines the elliptic curve in mathematics and
 provides some cryptographic functions related to it.
 
 Library dependency:
     sys
-
 """
 import sys
 from .. import algorithm as algo

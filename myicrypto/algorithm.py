@@ -1,9 +1,16 @@
-#!/usr/bin/env python3
-"""Contains common number theory algorithms
+"""
+================================================
+== 	Filename: algorithm.py                    ==
+== 	Author: Yi Lyu                            ==
+==	Status: Complete                          ==
+================================================
+
+Contains common number theory algorithms
 
 Library dependency:
     math
 """
+
 import math
 
 __all__ = ['fast_modular_multiply',
