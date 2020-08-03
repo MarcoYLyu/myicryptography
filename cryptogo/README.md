@@ -6,7 +6,7 @@ This repository contains a library of common cryptography functions, including b
 
 Use `pip3` to install the package
 
-``>>> pip3 install myicryptography``
+``>>> pip3 install cryptogo``
 
 ## Acknowledge
 
