@@ -11,8 +11,4 @@ from .factor import *
 from .lattice import *
 
 from .algorithm import *
-__all__ = ['crypto', 'ecurve', 'factorization', 'lattice', 'algorithm']
-__all__.extend(crypto.__all__)
-__all__.extend(ecurve.__all__)
-__all__.extend(factor.__all__)
-__all__.extend(lattice.__all__)
+__all__ = ['crypto', 'ecurve', 'factorization', 'lattice']

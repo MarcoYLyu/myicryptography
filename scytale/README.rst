@@ -10,7 +10,7 @@ Installation
 
 Use ``pip3`` to install the package
 
-``>>> pip3 install myicrypto``
+``>>> pip3 install scytale``
 
 Acknowledge
 -----------

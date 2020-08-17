@@ -12,7 +12,7 @@ Example:
     
     >>> elgamal_pkc = ElgamalPKC(467, 2)
     >>> elgamal_pkc.set_secret_key(153)
-    >>> elgamalPKC.decrypt(elgamalPKC.encrypt(331))
+    >>> elgamal_pKC.decrypt(elgamal_pKC.encrypt(331))
     331
 
 Library dependency:
@@ -22,12 +22,13 @@ Library dependency:
 from random import seed
 from random import randint
 from .. import algorithm as algo
+from .pkc_template import PKC
 
 seed(1)
 
 __all__ = ['ElgamalPKC']
 
-class ElgamalPKC:
+class ElgamalPKC(PKC):
     """Elgamal public key cryptography
     
     Attributes:
@@ -51,8 +52,11 @@ class ElgamalPKC:
     def set_secret_key(self, a):
         """ sets the secret key """
         self._secret_key = a
-        
+    
     def encrypt(self, m):
+        return super().encrypt(m)
+
+    def _encrypt(self, m):
         """Encrypts the message
         
         Args:
@@ -69,8 +73,11 @@ class ElgamalPKC:
         c1 = algo.fast_modular_multiply(self.g, key, p)
         c2 = (m * algo.fast_modular_multiply(A, key, p)) % p
         return c1, c2
-    
+
     def decrypt(self, pair):
+        return super().decrypt(pair)
+    
+    def _decrypt(self, pair):
         """Decrypts the message
         
         Args:

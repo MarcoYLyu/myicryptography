@@ -20,8 +20,17 @@ __all__ = ['fast_modular_multiply',
            'euler_phi',
            'inverse_mod',
            'search_non_residue',
-           'tonelli_shanks'
+           'tonelli_shanks',
+           'to_num',
+           'to_str',
+           'jacobi'
           ]
+
+def to_num(text):
+    return list(map(lambda x: ord(x), text))
+
+def to_str(numbers):
+    return ''.join(list(map(lambda x: chr(x), numbers)))
 
 def fast_modular_multiply(g, k, p):
     """Calculates the value g^k mod p
@@ -126,19 +135,30 @@ def euler_phi(N):
         return result * (p - 1) // (divisor * p)
     else:
         return result // divisor
-    
-def inverse_mod(x, p):
-    """Calculates the inverse of x mod p
+
+def egcd(a, b):
+    if a == 0:
+        return (b, 0, 1)
+    else:
+        g, y, x = egcd(b % a, a)
+        return (g, x - (b // a) * y, y)
+
+def inverse_mod(a, m):
+    """Calculates the inverse of a mod m by extended Euclidean algorithm.
     
     Args:
-        x: an integer
-        p: an integer (prime number)
+        a: an integer
+        m: an integer (hopefully prime number)
         
     Returns:
-        an integer representing the inverse of x mod p
+        an integer representing the inverse of a mod m
 
     """
-    return pow(x, p - 2, p)
+    g, x, y = egcd(a, m)
+    if g == 1:
+        return x % m
+    assert("ERROR: NO SUCH INVERSE EXISTS.")
+    return -1
 
 def search_non_residue(p):
     """Find a non residue of p between 2 and p
@@ -155,6 +175,27 @@ def search_non_residue(p):
         if pow(z, (p - 1) // 2, p) == p - 1:
             return z
     return -1
+
+def is_non_residue(z, p):
+    return pow(z, (p - 1) // 2, p) == p - 1
+
+def jacobi(a, n):
+    assert(n % 2 == 1)
+    t = 1
+    while a != 0:
+        while a % 2 == 0:
+            a /= 2
+            r = n % 8
+            if r == 3 or r == 5:
+                t = -t
+        a, n = n, a
+        if a % 4 == n % 4 == 3:
+            t = -t
+        a %= n
+    if n == 1:
+        return t
+    else:
+        return 0
 
 def tonelli_shanks(n, p):
     """Tonelli Shanks algorithm
@@ -200,3 +241,7 @@ def tonelli_shanks(n, p):
         m = i
     
     return r, p - r
+
+
+if __name__ == "__main__":
+    print(to_str(to_num("AsdsA")))
